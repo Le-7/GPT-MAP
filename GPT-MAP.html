@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>GPT MAP</title>
 	<style>
 		body {
@@ -62,5 +63,39 @@
 		</div>
 		<button>Localisation aléatoire</button>
 	</div>
+<script>
+function placerAleatoirement() {
+  // Définir une liste de quartiers de la région Île-de-France avec leurs coordonnées géographiques
+  const quartiers = [
+    {nom: "Montmartre, Paris", lat: 48.8867, lon: 2.3431},
+    {nom: "Le Marais, Paris", lat: 48.8572, lon: 2.3527},
+    {nom: "La Défense, Courbevoie", lat: 48.8922, lon: 2.2367},
+    {nom: "Bercy, Paris", lat: 48.8359, lon: 2.3869},
+    {nom: "Le Quartier Latin, Paris", lat: 48.8495, lon: 2.3470},
+    {nom: "Le Plateau de Vanves, Vanves", lat: 48.8228, lon: 2.2882},
+    {nom: "Le Vieux Saint-Maur, Saint-Maur-des-Fossés", lat: 48.7979, lon: 2.4994},
+    {nom: "Charentonneau, Maisons-Alfort", lat: 48.8099, lon: 2.4337},
+    {nom: "Les Garennes, Bry-sur-Marne", lat: 48.8347, lon: 2.5277},
+    {nom: "Le Parc, Fontenay-sous-Bois", lat: 48.8471, lon: 2.4788}
+  ];
+
+  // Sélectionner un quartier aléatoire
+  const quartierAleatoire = quartiers[Math.floor(Math.random() * quartiers.length)];
+
+  // Récupérer les coordonnées géographiques du quartier
+  const lat = quartierAleatoire.lat;
+  const lon = quartierAleatoire.lon;
+
+  // Mettre à jour l'URL de l'iframe de la carte avec les nouvelles coordonnées
+  const mapIframe = document.querySelector('.map-container iframe');
+  const newUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.02}%2C${lat - 0.01}%2C${lon + 0.02}%2C${lat + 0.01}&amp;layer=mapnik`;
+  mapIframe.setAttribute('src', newUrl);
+}
+
+// Associer la fonction au bouton de la carte
+const bouton = document.querySelector('button');
+bouton.addEventListener('click', placerAleatoirement);
+
+</script>
 </body>
 </html>
