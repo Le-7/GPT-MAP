@@ -20,6 +20,14 @@
 			text-align: center; /* centré */
 			margin-top: 20px;
 		}
+.animal {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transition: all 50s ease-out;
+ z-index: -1;
+}
+
 .rotate {
   animation: rotation 10s linear infinite;
 }
@@ -76,6 +84,7 @@
 		</div>
 		<button>Localisation aléatoire</button>
 	</div>
+<div id="animal-container"></div>
 <script>
 function placerAleatoirement() {
   // Définir une liste de quartiers de la région Île-de-France avec leurs coordonnées géographiques
@@ -172,6 +181,45 @@ function placerAleatoirement() {
 // Associer la fonction au bouton de la carte
 const bouton = document.querySelector('button');
 bouton.addEventListener('click', placerAleatoirement);
+
+// Créer un tableau avec les noms des images d'animaux
+const animalImages = ["https://i.redd.it/wxq1vrbz4ec51.png", "https://art.pixilart.com/45060eeb47ebbe6.png", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Eo_circle_purple_number-7.svg/2048px-Eo_circle_purple_number-7.svg.png"];
+
+// Récupérer la taille de la fenêtre pour déterminer les limites du mouvement
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
+// Fonction pour générer une position aléatoire
+function getRandomPosition() {
+  const x = Math.floor(Math.random() * windowWidth);
+  const y = Math.floor(Math.random() * windowHeight);
+  return { x, y };
+}
+
+// Créer des animaux aléatoires et les faire se déplacer
+for (let i = 0; i < 10; i++) {
+  // Choisir une image d'animal aléatoire
+  const imageIndex = Math.floor(Math.random() * animalImages.length);
+  const animalImage = animalImages[imageIndex];
+
+  // Créer l'image de l'animal et l'ajouter au conteneur
+  const animal = document.createElement("img");
+  animal.setAttribute("src", animalImage);
+  animal.setAttribute("class", "animal");
+  document.getElementById("animal-container").appendChild(animal);
+
+  // Définir la position initiale de l'animal
+  const position = getRandomPosition();
+  animal.style.left = `${position.x}px`;
+  animal.style.top = `${position.y}px`;
+
+  // Faire bouger l'animal toutes les 2 secondes
+  setInterval(() => {
+    const newPosition = getRandomPosition();
+    animal.style.left = `${newPosition.x}px`;
+    animal.style.top = `${newPosition.y}px`;
+  }, 2000);
+}
 
 </script>
 </body>
