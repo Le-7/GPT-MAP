@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+<style>
+    .incomplete-text {
+  color: violet !important;
+}
+  </style>
 <link rel="icon" href="https://www.pngitem.com/pimgs/m/118-1188903_transparent-man-pooping-clipart-shit-png-png-download.png" type="image/x-icon">
 	<title>GPT MAP</title>
 	<style>
+
 		body {
 			background-color: #000; /* couleur de fond noir */
 			color: #fff; /* texte blanc */
@@ -235,10 +243,35 @@ console.log(quartierChoisi);
     // Réponse correcte, ajouter 10 points et afficher un message de succès
     count=count+10;
     score.textContent = `Score: ${count}`;
-    alert('Bravo! Vous avez trouvé le bon lieu!');
+      Swal.fire({
+      icon: 'success',
+      title: 'Bravo!',
+      text: 'Vous avez trouvé le bon lieu!',
+      showConfirmButton: false,
+      timer: 1500,
+      background: '#000000',
+      customClass: {
+        title: 'macpage-title',
+        content: 'macpage-content',
+        popup: 'macpage-popup',
+content: 'incomplete-text'
+      }
+    });
+ placerAleatoirement();
   } else {
     // Réponse incorrecte, afficher un message d'erreur
-    alert('Désolé, ce n\'est pas le bon lieu. Veuillez essayer à nouveau.');
+    Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Désolé, ce n\'est pas le bon lieu. Veuillez essayer à nouveau.',
+    background: '#000000',
+    customClass: {
+      title: 'incomplete-header',
+      popup: 'incomplete-body',
+      confirmButton: 'incomplete-button',
+content: 'incomplete-text'
+    }
+  });
   }
 }
 </script>
