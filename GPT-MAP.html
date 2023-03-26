@@ -21,11 +21,11 @@
 			margin-top: 20px;
 		}
 .animal {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 50px;
-  transition: all 50s ease-out;
- z-index: -1;
+  transition: all 25s ease-out;
+ z-index: 1;
 }
 
 .rotate {
@@ -221,6 +221,39 @@ for (let i = 0; i < 10; i++) {
   }, 2000);
 }
 
+// Créer un élément pour le score
+const scoreElement = document.createElement('div');
+scoreElement.classList.add('score');
+scoreElement.style.position = 'fixed';
+scoreElement.style.bottom = '0';
+scoreElement.style.left = '50%';
+scoreElement.style.transform = 'translate(-50%, 0)';
+scoreElement.style.backgroundColor = '#b31ddc'; // même violet que le bouton
+scoreElement.style.color = 'white';
+scoreElement.style.padding = '10px';
+scoreElement.style.fontSize = '24px';
+scoreElement.innerText = 'Score: 0';
+
+
+// Ajouter l'élément de score à la page
+document.body.appendChild(scoreElement);
+
+// sélectionner tous les éléments animal
+const animals = document.querySelectorAll('.animal');
+// sélectionner l'élément score
+const score = document.querySelector('.score');
+let count = 0;
+
+// ajouter un écouteur d'événements de clic à chaque animal
+for (let i = 0; i < animals.length; i++) {
+  animals[i].addEventListener('click', function() {
+    // supprimer l'animal cliqué
+    animals[i].remove();
+     // incrémenter le score et l'afficher
+  count++;
+  score.textContent = `Score: ${count}`;
+  });
+}
 </script>
 </body>
 </html>
