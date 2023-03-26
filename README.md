@@ -15,5 +15,5 @@ Le seul ajustement que j'ai fait est la liste de lieu car il n'arrivait pas à l
 J'ai mis à peu près 15h (oui debuguer uniquement avec ses réponses est long...) à faire ce projet, qui j'espere, vous plait.  
 Il nécessite une connexion Internet afin de télécharger les bibliothèques utiles.
 Une piste d'amélioration serait d'ajouter plus de lieu, je compte sur vous pour m'en suggérer.  
-La bise. 
+La bise.  
 MRC-7.  
