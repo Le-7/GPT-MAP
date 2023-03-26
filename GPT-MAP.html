@@ -238,8 +238,34 @@ for (let i = 0; i < animals.length; i++) {
 }
 function verifierReponse() {
   const reponse = document.getElementById('guess-input').value;
+function distance(s1, s2) {
+  if (!s1 || !s2) {
+    return (s1 || s2).length;
+  }
+  const costs = [];
+  for (let i = 0; i <= s1.length; i++) {
+    let lastValue = i;
+    for (let j = 0; j <= s2.length; j++) {
+      if (i === 0) {
+        costs[j] = j;
+      } else if (j > 0) {
+        let newValue = costs[j - 1];
+        if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+          newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+        }
+        costs[j - 1] = lastValue;
+        lastValue = newValue;
+      }
+    }
+    if (i > 0) {
+      costs[s2.length] = lastValue;
+    }
+  }
+  return costs[s2.length];
+}
+const distancel = distance(reponse.toLowerCase(), quartierChoisi.toLowerCase());
 console.log(quartierChoisi);
-  if (reponse.toLowerCase() === quartierChoisi.toLowerCase()) {
+  if (distancel <= 10) {
     // Réponse correcte, ajouter 10 points et afficher un message de succès
     count=count+10;
     score.textContent = `Score: ${count}`;
