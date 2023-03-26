@@ -80,7 +80,8 @@
 	<div class="container">
 		<h1 class="rotate">GPT MAP</h1>
 		<div class="map-container">
-			<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.005082607269287%2C48.98715927006398%2C2.120871067047119%2C49.05907922976004&amp;layer=mapnik"></iframe>
+			<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.005082607269287%2C48.98715927006398%2C2.120871067047119%2C49.05907922976004&layer=mapnik&marker=49.026118%2C2.062976" style="pointer-events:none;
+"></iframe>
 		</div>
 		<button>Localisation aléatoire</button>
 	</div>
@@ -174,7 +175,7 @@ function placerAleatoirement() {
 
   // Mettre à jour l'URL de l'iframe de la carte avec les nouvelles coordonnées
   const mapIframe = document.querySelector('.map-container iframe');
-  const newUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.02}%2C${lat - 0.01}%2C${lon + 0.02}%2C${lat + 0.01}&amp;layer=mapnik`;
+  const newUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.02}%2C${lat - 0.01}%2C${lon + 0.02}%2C${lat + 0.01}&layer=mapnik&marker=${lat},${lon}&mlon=${lon}&mlat=${lat}`;
   mapIframe.setAttribute('src', newUrl);
 }
 
